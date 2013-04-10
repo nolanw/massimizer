@@ -1,10 +1,10 @@
 #!/usr/bin/env coffee
 
-fs         = require "fs"
-Massimizer = require ".."
+fs        = require "fs"
+massimize = require ".."
 
 convert = (recipe) ->
-  process.stdout.write Massimizer.convert recipe
+  process.stdout.write massimize(recipe)
 
 switch process.argv.length
   when 2
