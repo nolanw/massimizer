@@ -1,0 +1,22 @@
+{
+	"name": "massimizer",
+	"version": "0.0.1",
+  
+	"author": "Nolan Waite <nolan@nolanw.ca>",
+  
+	"description": "Convert volume to mass in a recipe",
+  
+  "dependencies": {
+    "coffee-script": "1.6.2"
+  },
+  
+  "engines": {
+    "node": ">= 0.8.x"
+  },
+  
+  "main": "./index",
+  
+  "bin": {
+    "massimize": "./bin/massimize"
+  }
+}
