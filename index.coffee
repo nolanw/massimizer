@@ -12,26 +12,20 @@ exports.convert = (recipe) ->
         cups += parseInt(numerator, 10) / parseInt(denominator, 10)
       else
         cups += parseInt(part, 10)
-    g = Math.round switch ingredient[2]
-      when "all-purpose flour"
-        # http://allrecipes.com/howto/cup-to-gram-conversions/
-        cups * 128
-      when "brown sugar"
-        # http://allrecipes.com/howto/cup-to-gram-conversions/
-        cups * 220
-      when "butter"
-        # packaging
-        cups * 453.592 / 2
-      when "chopped walnuts or pecans"
-        # http://allrecipes.com/howto/cup-to-gram-conversions/
-        cups * 122
-      when "granulated sugar"
-        # http://allrecipes.com/howto/cup-to-gram-conversions/
-        cups * 201
-      when "semisweet chocolate chips"
-        # http://allrecipes.com/howto/cup-to-gram-conversions/
-        cups * 175
+    g = Math.round cups * CC_PER_CUP * DENSITIES[ingredient[2]]
     converted.push "#{g}g #{ingredient[2]}"
     previousTokenEndIndex = ingredient.index + ingredient[0].length
   converted.push recipe.substring previousTokenEndIndex
   converted.join ''
+
+CC_PER_CUP = 236.588
+
+# Various ingredients' densities, in grams per cubic centimeter.
+# http://www.aqua-calc.com/page/density-table unless otherwise noted.
+DENSITIES =
+  "all-purpose flour": 0.528
+  "brown sugar": 0.93
+  "butter": 0.959
+  "chopped walnuts or pecans": 0.461
+  "granulated sugar": 0.849
+  "semisweet chocolate chips": 0.725 # http://wiki.answers.com/Q/What_is_the_density_of_chocolate_chips
