@@ -20,8 +20,8 @@ The trouble is, many good recipes list the required volume of each ingredient. C
     module.exports = (recipe) ->
       recipe.replace KNOWN_INGREDIENTS, (match, cups, ingredient) ->
         cc = parseFraction(cups) * CC_PER_CUP
-        g = Math.round cc * DENSITIES[ingredient]
-        "#{g}g #{ingredient}"
+        g = cc * DENSITIES[ingredient]
+        "#{g.toFixed()}g #{ingredient}"
     
     CC_PER_CUP = 236.588
 
