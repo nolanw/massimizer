@@ -5,7 +5,7 @@ For dry ingredients especially, measuring ingredients by mass has several benefi
 - Consistency. The amount of flour in a nominal "1 cup" measuring cup depends on how packed the flour is.
 - Dishes. Instead of dirtying many measuring cups, put the bowl on the scale and press *TARE*. Then pour directly into the bowl!
 
-The trouble is, many good recipes list the required volume of each ingredient. Conversion depends on the density of the ingredient; a cup of flour weighs much less than a cup of butter. **Massimizer** knows about the different densities of several ingredients. ([Source 1](http://www.aqua-calc.com/page/density-table) and [Source 2](http://wiki.answers.com/Q/What_is_the_density_of_chocolate_chips) are the sources for these densities, listed as grams per cubic centimeter.)
+The trouble is, many good recipes list the required volume of each ingredient. Conversion depends on the density of the ingredient; a cup of flour weighs much less than a cup of butter. **Massimizer** knows about the different densities of several ingredients. ([Source 1](http://www.aqua-calc.com/page/density-table) and [Source 2](http://wiki.answers.com/Q/What_is_the_density_of_chocolate_chips) are the sources for these densities, listed as grams per milliliter.)
 
     DENSITIES =
       "all-purpose flour": 0.528
@@ -15,15 +15,15 @@ The trouble is, many good recipes list the required volume of each ingredient. C
       "granulated sugar": 0.849
       "semisweet chocolate chips": 0.725
 
-**Massimizer**'s sole export is this function. It reads a recipe as a string and converts all the ingredients it can into grams. Everything else in the recipe is passed through unchanged. For each ingredient, we convert the number of cups into the equivalent number of cubic centimeters, then convert cubic centimeters into grams.
+**Massimizer**'s sole export is this function. It reads a recipe as a string and converts all the ingredients it can into grams. Everything else in the recipe is passed through unchanged. For each ingredient, we convert the number of cups into the equivalent number of milliliters, then convert into grams.
 
     module.exports = (recipe) ->
       recipe.replace KNOWN_INGREDIENTS, (match, cups, ingredient) ->
-        cc = parseFraction(cups) * CC_PER_CUP
-        g = cc * DENSITIES[ingredient]
+        mL = parseFraction(cups) * ML_PER_CUP
+        g = mL * DENSITIES[ingredient]
         "#{g.toFixed()}g #{ingredient}"
     
-    CC_PER_CUP = 236.588
+    ML_PER_CUP = 236.588
 
 Build up a regular expression that matches only known units and ingredients.
 
