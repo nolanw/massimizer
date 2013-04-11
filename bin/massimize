@@ -11,7 +11,7 @@ switch process.argv.length
     process.stdin.resume()
     process.stdin.setEncoding('utf8')
     parts = []
-    process.stdin.on 'data', part ->
+    process.stdin.on 'data', (part) ->
       parts.push part
     process.stdin.on 'end', ->
       convert parts.join('')
