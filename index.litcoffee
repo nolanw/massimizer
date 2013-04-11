@@ -15,11 +15,11 @@ The trouble is, many good recipes list the required volume of each ingredient. C
       "granulated sugar": 0.849
       "semisweet chocolate chips": 0.725
 
-**Massimizer**'s sole export is this function. It reads a recipe as a string and converts all the ingredients it can into grams. Everything else in the recipe is passed through unchanged. For each ingredient, we convert the number of cups into the equivalent number of milliliters, then convert into grams.
+**Massimizer**'s sole export is this function. It reads a recipe as a string and converts all the ingredients it can into grams. Everything else in the recipe is passed through unchanged. For each ingredient, we convert to milliliters as needed, then convert into grams.
 
     module.exports = (recipe) ->
-      recipe.replace KNOWN_INGREDIENTS, (match, cups, ingredient) ->
-        mL = parseFraction(cups) * ML_PER_CUP
+      recipe.replace KNOWN_INGREDIENTS, (match, amount, unit, ingredient) ->
+        mL = parseFraction(amount) * (if /cup/.test(unit) then ML_PER_CUP else 1)
         g = mL * DENSITIES[ingredient]
         "#{g.toFixed()}g #{ingredient}"
     
@@ -32,8 +32,8 @@ Build up a regular expression that matches only known units and ingredients.
       ( (?: [0-9]+\s+ )?  # Whole number before fraction
         [0-9]+            # Whole number or numerator
         (?:/[0-9]+)?      # Denominator
-      ) \s+
-      cups?\s+            # Units (just cups for now)
+      ) \s+               # Space between number and unit
+      (cups?|mL)\s+       # Unit
       (#{knownDensities}) # Ingredients we can convert
     ///g
 
