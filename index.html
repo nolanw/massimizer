@@ -19,21 +19,16 @@ Mix all ingredients in a medium bowl. Eat.
 <pre id="recipe-mass"></pre>
 </div>
 
-<script src="http://coffeescript.org/extras/coffee-script.js"></script>
-<script type="text/literate-coffeescript" src="index.litcoffee"></script>
+<script src="index.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
-<script type="text/coffeescript">
-compile = ->
-  $('#recipe-mass').text massimize $('#recipe-volume').val()
+<script>
+function compile(){
+  $('#recipe-mass').text(massimize($('#recipe-volume').val()))
+}
 
-$ ->
-  $('#recipe-volume').on 'change keyup cut paste', compile
-  runOnce = setInterval (->
-    if massimize?
-      clearInterval(runOnce)
-      compile()
-      $('#recipe-volume').focus()
-  ), 50
+$(function(){
+  $('#recipe-volume').on('change keyup cut paste', compile).trigger('change')
+})
 </script>
 
 <style>
