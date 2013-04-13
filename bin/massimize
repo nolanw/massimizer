@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
-fs        = require "fs"
-massimize = require ".."
+fs          = require "fs"
+{massimize} = require ".."
 
 convert = (recipe) ->
   process.stdout.write massimize(recipe)

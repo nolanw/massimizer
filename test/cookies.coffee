@@ -1,5 +1,5 @@
-fs        = require "fs"
-massimize = require ".."
+fs          = require "fs"
+{massimize} = require ".."
 
 fixture = (filename) -> fs.readFileSync("#{__dirname}/#{filename}", "utf8")
 

@@ -15,9 +15,9 @@ The trouble is, many good recipes list the required volume of each ingredient. C
       "granulated sugar": 0.849
       "semisweet chocolate chips": 0.725
 
-**Massimizer**'s sole export is this function. It reads a recipe as a string and converts all the ingredients it can into grams. Everything else in the recipe is passed through unchanged. For each ingredient, we convert to milliliters as needed, then convert into grams.
+**Massimizer**'s sole export (on both CommonJS and in the browser) is the `massimize` function. It reads a recipe as a string and converts all the ingredients it can into grams. Everything else in the recipe is passed through unchanged. For each ingredient, we convert to milliliters as needed, then convert into grams.
 
-    module.exports = (recipe) ->
+    (exports ? window).massimize = (recipe) ->
       recipe.replace KNOWN_INGREDIENTS, (match, amount, unit, ingredient) ->
         mL = parseFraction(amount) * (if /cup/.test(unit) then ML_PER_CUP else 1)
         g = mL * DENSITIES[ingredient]
