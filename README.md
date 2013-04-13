@@ -39,13 +39,14 @@ KNOWN_INGREDIENTS = ///
 ///g
 ```
 **parseFraction** is a utility function that converts a mixed number into a decimal number. A "mixed number" is technically an integer and a proper fraction, like `1 2/3` (read as "one and two thirds"). **parseFraction** is not so strict. `1`, `2/3`, and `1 4/3` are all equally acceptable.
-
-    parseFraction = (fraction) ->
-      decimal = 0
-      for part in fraction.split(/\s+/)
-        if "/" in part
-          [numerator, denominator] = part.split("/")
-          decimal += parseInt(numerator, 10) / parseInt(denominator, 10)
-        else
-          decimal += parseInt(part, 10)
-      decimal
+```coffeescript
+parseFraction = (fraction) ->
+  decimal = 0
+  for part in fraction.split(/\s+/)
+    if "/" in part
+      [numerator, denominator] = part.split("/")
+      decimal += parseInt(numerator, 10) / parseInt(denominator, 10)
+    else
+      decimal += parseInt(part, 10)
+  decimal
+```

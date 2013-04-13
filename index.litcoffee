@@ -49,3 +49,4 @@ Build up a regular expression that matches only known units and ingredients.
         else
           decimal += parseInt(part, 10)
       decimal
+
