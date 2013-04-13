@@ -2,8 +2,9 @@
 
 For dry ingredients especially, measuring ingredients by mass has several benefits:
 
-- Consistency. The amount of flour in a nominal "1 cup" measuring cup depends on how packed the flour is.
-- Dishes. Instead of dirtying many measuring cups, put the bowl on the scale and press *TARE*. Then pour directly into the bowl!
+- Accuracy. I've scooped "1 cup" of flour that weighed what 1.5 cups of flour should weigh.
+- Consistency. I can pour 125g of flour into a bowl on a scale and it's the same amount of flour every time.
+- Dishes. Instead of dirtying many measuring cups, I put the bowl on the scale and press *TARE*, then pour directly into the bowl!
 
 The trouble is, many good recipes list the required volume of each ingredient. Conversion depends on the density of the ingredient; a cup of flour weighs much less than a cup of butter. **Massimizer** knows about the different densities of several ingredients. ([Source 1](http://www.aqua-calc.com/page/density-table) and [Source 2](http://wiki.answers.com/Q/What_is_the_density_of_chocolate_chips) are the sources for these densities, listed as grams per milliliter.)
 
