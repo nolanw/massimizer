@@ -1,57 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
 
-<div id="left">
-  <h1>Type a recipe with volumes</h1>
-  <textarea id="recipe-volume">Pretty bad chocolate chip cookies
+<style>
+html, body {
+  height: 100%;
+}
 
-- 1 cup butter, softened
-- 1 cup brown sugar, packed
-- 1 cup all-purpose flour
-- 1 cup semisweet chocolate chips
+body {
+  margin: 0;
+  
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+}
 
-Mix all ingredients in a medium bowl. Eat.
+h1 {
+  text-align: center;
+}
+
+div {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+textarea {
+  font-size: 16pt;
+  
+  -webkit-flex: 2;
+  flex: 2;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.75em;
+}
+
+@media all and (max-width: 800px) {
+  h1 {
+    margin: 0;
+  }
+  
+  textarea {
+    -webkit-flex: 1 100%;
+    flex: 1 100%;
+  }
+}
+</style>
+
+
+<h1>Massy</h1>
+
+<div>
+<textarea id="in">
+Chocolate Chip Cookies
+
+* 1 cup butter, softened
+* 1C granulated sugar
+* 0.75 cups brown sugar
+* 1 egg
+* 1 1/4 tsp vanilla extract
+* 1/2 tsp baking soda
+* 2 cups all-purpose flour
+* 1 cup chocolate chips
+
+Combine butter, sugars, egg, and vanilla in bowl. Mix thoroughly, ideally with electric mixer on medium.
+
+Stir in baking soda. Slowly add flour until thoroughly blended. Fold in chocolate chips.
+
+Drop by spoonfuls on to baking sheets.
+
+Bake at 375ºF for 8-10 minutes or until edges turn golden brown.
+</textarea>
+
+<textarea id="out" disabled>
+Massy needs JavaScript to work!
 </textarea>
 </div>
 
-<div id="right">
-  <h1>Get a recipe with masses</h1>
-<pre id="recipe-mass"></pre>
-</div>
+<footer>
+  Hello! <a href="https://github.com/nolanw/massimizer">Source.</a>
+</footer>
 
-<script src="index.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="ingredients-parser.js"></script>
 <script>
-function compile(){
-  $('#recipe-mass').text(massimize($('#recipe-volume').val()))
-}
-
-$(function(){
-  $('#recipe-volume').on('change keyup cut paste', compile).trigger('change')
-})
-</script>
-
-<style>
-#left, #right {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-#left {
-  left: 0; right: 50%;
-}
-#right {
-  left: 50%; right: 0;
-}
-
-#recipe-volume, #recipe-mass {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+document.addEventListener('DOMContentLoaded', function(event) {
+  var inbox = document.getElementById('in');
+  var outbox = document.getElementById('out');
+  function massifyTextareas() {
+    outbox.value = INGREDIENTS.parse(inbox.value);
+  }
   
-  font: 1em sans-serif;
-  white-space: pre-wrap;
-  border: 0;
-}
-</style>
+  massifyTextareas();
+  inbox.addEventListener('keyup', function(event) {
+    massifyTextareas();
+  });
+});
+</script>

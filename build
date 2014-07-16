@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -eu
+
+pegjs -e INGREDIENTS ingredients.pegjs ingredients-parser.js
