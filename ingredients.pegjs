@@ -23,7 +23,7 @@ ingredient /* g/mL */
   / "butter"i { return [0.959, text()]; }
   / "chopped walnuts or pecans" { return [0.461, text()]; }
   / ("granulated"i whitespace)? "sugar"i { return [0.849, text()]; }
-  / ("semisweet" whitespace)? "chocolate chips" { return [0.725, text()]; }
+  / (("semisweet" / "milk" / "dark") whitespace)? "chocolate chips" { return [0.725, text()]; }
 
 decimal
   = digits:(([0-9]+)? "." [0-9]+) { return parseFloat(digits.join("")); }
